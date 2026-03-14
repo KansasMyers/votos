@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: votos
+
+  # Configuração do Banco de Dados (PostgreSQL)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/votos_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Flyway gerencia o schema
+    show-sql: false
+    properties:
+      hibernate:
+        '[format_sql]': true
+        jdbc:
+          '[batch_size]': 50 # Otimização para centenas de milhares de votos
+
+  # Configuração do Flyway
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  # Configuração do Apache Kafka
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: votos-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+# Configurações de Negócio Customizadas
+app:
+  votacao:
+    tempo-default-minutos: 1 # Tempo padrão para sessões de votação
+    topico-resultado: "pauta-votacao-resultado"
+
+# Logs para monitoramento e auditoria
+logging:
+  level:
+    root: INFO
+    "[br.com.cooperativa.votos]": DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Documentação OpenAPI/Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
