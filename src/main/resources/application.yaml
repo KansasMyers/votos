@@ -28,12 +28,12 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     producer:
-      key-serializer: org.apache.serialization.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       group-id: votos-group
       auto-offset-reset: earliest
-      key-deserializer: org.apache.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
 # Configurações de Negócio Customizadas
