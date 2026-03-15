@@ -26,6 +26,9 @@ public class Sessao {
     @Column(nullable = false)
     private LocalDateTime dataFechamento;
 
+    @Builder.Default
+    private boolean processada = false;
+
     public boolean estaAberta() {
         LocalDateTime agora = LocalDateTime.now();
         return agora.isAfter(dataAbertura) && agora.isBefore(dataFechamento);
