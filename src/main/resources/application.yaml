@@ -2,6 +2,11 @@ spring:
   application:
     name: votos
 
+  # Habilitar Virtual Threads para melhor desempenho com alta concorrência
+  threads:
+    virtual:
+      enabled: true
+
   # Configuração do Banco de Dados (PostgreSQL)
   datasource:
     url: jdbc:postgresql://localhost:5432/votos_db
