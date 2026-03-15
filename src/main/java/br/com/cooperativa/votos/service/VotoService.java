@@ -59,7 +59,7 @@ public class VotoService {
         var resultado = new ResultadoResponse(pautaId, pauta.getTitulo(), sim, nao, status);
 
         // Notificar via Mensageria
-        kafkaTemplate.send("pauta-votação-resultado", pautaId.toString(), resultado);
+        kafkaTemplate.send("pauta-votacao-resultado", pautaId.toString(), resultado);
 
         return resultado;
     }
