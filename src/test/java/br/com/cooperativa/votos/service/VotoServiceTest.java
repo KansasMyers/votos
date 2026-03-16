@@ -43,7 +43,7 @@ class VotoServiceTest {
     @DisplayName("Deve registar um voto com sucesso")
     void deveVotarComSucesso() {
         Long pautaId = 1L;
-        VotoRequest request = new VotoRequest("assoc-1", VotoEnum.SIM);
+        VotoRequest request = new VotoRequest("assoc-1", "SIM");
         Pauta pauta = Pauta.builder().id(pautaId).build();
         Sessao sessao = Sessao.builder()
                 .pauta(pauta)
@@ -63,7 +63,7 @@ class VotoServiceTest {
     @DisplayName("Deve lançar exceção quando a sessão estiver fechada")
     void deveFalharVotoSessaoFechada() {
         Long pautaId = 1L;
-        VotoRequest request = new VotoRequest("assoc-1", VotoEnum.SIM);
+        VotoRequest request = new VotoRequest("assoc-1", "SIM");
         Sessao sessao = Sessao.builder()
                 .dataAbertura(LocalDateTime.now().minusMinutes(10))
                 .dataFechamento(LocalDateTime.now().minusMinutes(5)) // Já fechou
@@ -81,7 +81,7 @@ class VotoServiceTest {
     @DisplayName("Deve lançar exceção quando associado já votou")
     void deveFalharVotoDuplicado() {
         Long pautaId = 1L;
-        VotoRequest request = new VotoRequest("assoc-1", VotoEnum.SIM);
+        VotoRequest request = new VotoRequest("assoc-1", "SIM");
         Sessao sessao = Sessao.builder()
                 .dataAbertura(LocalDateTime.now().minusMinutes(1))
                 .dataFechamento(LocalDateTime.now().plusMinutes(1))

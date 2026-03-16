@@ -1,6 +1,5 @@
 package br.com.cooperativa.votos.integration;
 
-import br.com.cooperativa.votos.domain.VotoEnum;
 import br.com.cooperativa.votos.dto.PautaRequest;
 import br.com.cooperativa.votos.dto.SessaoRequest;
 import br.com.cooperativa.votos.dto.VotoRequest;
@@ -52,7 +51,7 @@ class VotoIntegrationTest extends AbstractIntegrationTest {
                 .andExpect(status().isOk());
 
         // Votar
-        var votoReq = new VotoRequest("assoc-int-1", VotoEnum.SIM);
+        var votoReq = new VotoRequest("assoc-int-1", "SIM");
         mockMvc.perform(post("/v1/pautas/" + pautaId + "/votar")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(votoReq)))
@@ -65,7 +64,7 @@ class VotoIntegrationTest extends AbstractIntegrationTest {
         // Criar pauta e abrir sessão
         Long pautaId = criarPautaEAbrirSessao("Pauta Duplicidade", 5);
 
-        var votoReq = new VotoRequest("associado-fiel", VotoEnum.SIM);
+        var votoReq = new VotoRequest("associado-fiel", "SIM");
 
         // Primeiro voto: OK
         mockMvc.perform(post("/v1/pautas/" + pautaId + "/votar")
@@ -91,7 +90,7 @@ class VotoIntegrationTest extends AbstractIntegrationTest {
         sessao.setDataFechamento(java.time.LocalDateTime.now().minusSeconds(1));
         sessaoRepository.saveAndFlush(sessao); // Garante a persistência imediata
 
-        var votoReq = new VotoRequest("associado-atrasado", VotoEnum.NAO);
+        var votoReq = new VotoRequest("associado-atrasado", "NAO");
 
         // Deve retornar 409 devido à lógica de 'estaAberta()'
         mockMvc.perform(post("/v1/pautas/" + pautaId + "/votar")

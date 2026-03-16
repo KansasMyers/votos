@@ -60,7 +60,7 @@ class VotoStressPerformanceTest extends AbstractIntegrationTest {
                 String associadoId = UUID.randomUUID().toString();
                 executor.submit(() -> {
                     try {
-                        var request = new VotoRequest(associadoId, VotoEnum.SIM);
+                        var request = new VotoRequest(associadoId, "SIM");
                         mockMvc.perform(post("/v1/pautas/" + pautaId + "/votar")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))

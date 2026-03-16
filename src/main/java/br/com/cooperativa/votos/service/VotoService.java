@@ -39,7 +39,7 @@ public class VotoService {
         var voto = Voto.builder()
                 .pauta(sessao.getPauta())
                 .associadoId(request.associadoId())
-                .voto(request.voto())
+                .voto(VotoEnum.valueOf(request.voto()))
                 .build();
 
         votoRepository.save(voto);
