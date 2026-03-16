@@ -1,7 +1,7 @@
 # Sistema de Votação Cooperativa (DESAFIO TÉCNICO JAVA - SICREDI)
 
 API REST desenvolvida para gerenciar pautas, sessões de votação e contabilização de votos em assembleias de cooperativas. O sistema foi projetado com foco em alta performance, concorrência massiva e integridade de dados.<br>
-<b>Todos os requisitos foram concluídos com sucesso, exceto o Bônus 1, pois o link fornecido estava indisponível. Fui orientado pela equipe de contratação a prosseguir sem a realização dessa etapa.</b>
+<b>Todos os requisitos foram concluídos com sucesso, exceto o Bônus 1, pois o link fornecido (https://run.mocky.io/v3/57f23672-c15f-48f8-90d3-d84ce00250b8/users/) está indisponível. Fui orientado pela equipe de contratação a prosseguir sem a realização dessa etapa.</b>
 
 ## Diferenciais Técnicos
 - <b>Java 21 & Virtual Threads (Project Loom):</b> O sistema utiliza threads leves para processar milhares de votos simultâneos com baixíssimo consumo de recursos
